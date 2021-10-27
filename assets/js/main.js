@@ -9,48 +9,56 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 
 //creo l'array 
-let numeri = []
+let randomNum = []
 
 //ciclo per generare 5 numeri random
-for (let i = 0; i < 5; i++) {
+while (randomNum.length < 5) {
     const randoms = Math.floor((Math.random() * 100) + 1);
-    console.log(randoms);
 
     //Pusho i numeri random dentro l'array 'numeri'
-    numeri.push(randoms)
+    if (!randomNum.includes(randoms)) {
+        randomNum.push(randoms)
+    }
+
 }
 
 //Visualizzo l'array di 5 numeri in console
-console.log(numeri);
-alert(numeri);
+console.log(randomNum);
+alert(randomNum);
 
 
+const seconds = 5;
+let match = []
+let userNum = []
 
-let clock
-let seconds = 0;
-clock = setInterval(counter, 1000);
-
+setTimeout(counter, seconds * 1000)
 
 function counter() {
-    if (seconds === 5) {
-        clearInterval(clock)
 
-        let userNum = []
 
-        for (let i = 0; i < 5; i++) {
-            const userNumbers = parseInt(prompt('Inserisci 5 numeri'));
-            console.log(userNumbers);
+    while (userNum.length < 5) {
 
-            //Pusho i numeri random dentro l'array 'numeri'
+        const userNumbers = parseInt(prompt('Inserisci 5 numeri'));
+
+        if (!userNum.includes(userNumbers)) {
             userNum.push(userNumbers)
-        }
 
-        console.log(userNum);
-    } else {
-        seconds++
-        console.log(seconds);
+            if (randomNum.includes(userNumbers)) {
+                match.push(userNumbers)
+            }
+        }
     }
+    document.querySelector('.result').innerHTML = `Hai indovinato ${match.length} numeri, ovvero: ${match}`
+
 }
+
+
+
+
+
+
+
+
 
 
 
